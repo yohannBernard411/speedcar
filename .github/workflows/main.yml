@@ -26,12 +26,3 @@ jobs:
 
     - name: Run Tests
       run: npm run test -- --watch=false --browsers=ChromeHeadless
-
-    - name: Deploy to Hostinger via FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-        local-dir: ./dist/
-        remote-dir: /chemin/vers/votre/repertoire/deploy/hostinger
