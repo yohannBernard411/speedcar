@@ -27,28 +27,31 @@ jobs:
     - name: Run Tests
       run: npm run test -- --watch=false --browsers=ChromeHeadless
  
-    - uses: actions/upload-artifact@v4
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/upload-artifact@v4
       with:
         name: artifact(build)
         path: dist/speedcar
 
-    - name: Download artefact(build)
-      uses: actions/download-artifact@v4
-      with:
-        name: artifact(build)
+      - name: Download artefact(build)
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact(build)
 
-    - name: open ssh to hostinger
-      run: ${{ secrets.SSHPUSHHOSTINGER }}
+      - name: Deploying to Hostinger
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            rm public_html
+            mkdir public_html
+            cd public_html
+            touch artefact(build)
 
-    - name: Ajout du mdp
-      run: ${{ secrets.SSHPUSHMDP }}
-
-    - name: Suppression du dossier existant public
-      run: rm public_html
-
-    - name: Ajout d'un dossier public vide
-      run: mkdir public_html
-
-    - name: Transfert du build
-      run: mv artefact(build) public_html
 
