@@ -26,3 +26,29 @@ jobs:
 
     - name: Run Tests
       run: npm run test -- --watch=false --browsers=ChromeHeadless
+ 
+    - uses: actions/upload-artifact@v4
+      with:
+        name: artifact(build)
+        path: dist/speedcar
+
+    - name: Download artefact(build)
+      uses: actions/download-artifact@v4
+      with:
+        name: artifact(build)
+
+    - name: open ssh to hostinger
+      run: ${{ secrets.SSHPUSHHOSTINGER }}
+
+    - name: Ajout du mdp
+      run: ${{ secrets.SSHPUSHMDP }}
+
+    - name: Suppression du dossier existant public
+      run: rm public_html
+
+    - name: Ajout d'un dossier public vide
+      run: mkdir public_html
+
+    - name: Transfert du build
+      run: mv artefact(build) public_html
+
