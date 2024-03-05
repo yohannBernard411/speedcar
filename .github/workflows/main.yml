@@ -36,16 +36,11 @@ jobs:
         name: artifactbuild
         path: dist
 
-    - name: Download artifact
-      uses: actions/download-artifact@v4
+     - name: Download artifact
+      uses: actions/download-artifact@v2
       with:
         name: artifactbuild
         path: dist
-
-    - name: Extract artifact
-      run: |
-        cd dist
-        unzip artifactbuild.zip
 
     - name: Deploying to Hostinger
       uses: appleboy/ssh-action@master
