@@ -24,6 +24,9 @@ jobs:
     - name: Build Angular App
       run: npm run build
 
+    - name: List files in directory
+      run: ls -la
+
     - name: Run Tests
       run: npm run test -- --watch=false --browsers=ChromeHeadless
       
@@ -38,6 +41,9 @@ jobs:
       with:
         name: artifactbuild
         path: dist
+
+    - name: Display artifact contents
+      run: ls -la dist
 
     - name: Deploying to Hostinger
       uses: appleboy/ssh-action@master
