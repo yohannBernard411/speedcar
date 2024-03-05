@@ -53,9 +53,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd domains
-          cd mywolf.fr/
-          rm -r public_html
-          mkdir public_html
-          cp build/ public_html/
+          cd domains/mywolf.fr/public_html
+          rm -rf *
+          cp -r https://github.com/yohannBernard411/speedcar/dist/speedcar/* ./
 
