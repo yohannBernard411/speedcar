@@ -28,14 +28,13 @@ jobs:
     - name: Build Angular app
       run: npm run build
 
-    - name: SSH Deploy on Hostinger
-      run: rsync -e ssh --delete-after source-path remote-user@target-server:destination-path
+    - name: rsync Deploy on Hostinger
+      uses: burnett01/rsync-deployments@6.0.0
       with:
-        source-path: ./dist/speedcar/
-        target-server: ${{ secrets.IP }}
+        switches: -avzr --delete
+        path: ./dist/speedcar/
+        remote-path: ~/domains/mywolf.fr/public_html/
+        remote-host: ${{ secrets.IP }}
         remote-user: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        public-key: ${{ secrets.PUBLIC_KEY }}
-        private-ssh-key: ${{ secrets.SERVER_SSH_KEY }}
-        destination-path: ~/domains/mywolf.fr/public_html/
-        ssh-port: ${{ secrets.PORT }}
+        remote-key: ${{ secrets.PUBLIC_KEY }}
