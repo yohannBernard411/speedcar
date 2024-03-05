@@ -36,5 +36,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         protocol: ftps
-        local-dir: ./dist/
+        local-dir: ./dist/speedcar/
         server-dir: /public_html/
