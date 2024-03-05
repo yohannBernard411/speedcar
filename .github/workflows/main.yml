@@ -28,6 +28,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.password }}
         port: ${{ secrets.PORT }}
-        local-dir: ./dist/
+        local-dir: ./dist/speedcar/
         server-dir: /home/u901463172/domains/mywolf.fr/public_html/
         timeout: 60000
