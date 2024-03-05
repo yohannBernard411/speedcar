@@ -45,6 +45,9 @@ jobs:
     - name: Display artifact contents
       run: ls -la dist
 
+    - name: Display content of dist/speedcar
+      run: ls -la $GITHUB_WORKSPACE/dist/speedcar
+
     - name: Deploying to Hostinger
       uses: appleboy/ssh-action@master
       with:
@@ -54,6 +57,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd domains/mywolf.fr/public_html
-          rm -rf *
-          cp -r $GITHUB_WORKSPACE/dist/speedcar/* ./
+          rm -rf *  # Supprimer les anciens fichiers
+          cp -r $GITHUB_WORKSPACE/dist/speedcar/./* ./
+
 
