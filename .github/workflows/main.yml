@@ -34,24 +34,21 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: artifactbuild
-        path: dist
+        path: ./dist
 
     - name: Download artifact
       uses: actions/download-artifact@v4
       with:
         name: artifactbuild
-        path: dist
+        path: ./dist
 
-    - name: Deploying to Hostinger
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd domains/mywolf.fr/public_html
-          rm -rf *
-          cp -r $GITHUB_WORKSPACE/dist/* ./
+    - name: Deploy project with SSH
+      uses: easingthemes/ssh-deploy@v2.1.4
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.PASSWORD }}
+        REMOTE_HOST: ${{ secrets.HOST }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        SOURCE: "./dist"
+        TARGET: "domains/mywolf.fr/public_html"
 
 
