@@ -36,17 +36,16 @@ jobs:
         name: artifactbuild
         path: dist
 
-    - name: Download artefactbuild
-      uses: actions/download-artifact@v4
+    - name: Download artifact
+      uses: actions/download-artifact@v2
       with:
         name: artifactbuild
         path: dist
 
-    - name: Display artifact contents
-      run: ls -la dist
-
-    - name: Display content of dist/speedcar
-      run: ls -la $GITHUB_WORKSPACE/dist/speedcar
+    - name: Extract artifact
+      run: |
+        cd dist
+        unzip artifactbuild.zip
 
     - name: Deploying to Hostinger
       uses: appleboy/ssh-action@master
@@ -57,7 +56,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd domains/mywolf.fr/public_html
-          rm -rf *  # Supprimer les anciens fichiers
-          cp -r $GITHUB_WORKSPACE/dist/speedcar/* ./
+          rm -rf *
+          cp -r $GITHUB_WORKSPACE/dist/* ./
 
 
