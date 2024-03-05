@@ -35,5 +35,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
+        protocol: ftps
         local-dir: ./dist/
         server-dir: /domains/mywolf.fr/public_html/
