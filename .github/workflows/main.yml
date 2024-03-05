@@ -34,5 +34,5 @@ jobs:
         ftp-server: ${{ secrets.IP }}
         ftp-username: ${{ secrets.USERNAME }}
         ftp-password: ${{ secrets.PASSWORD }}
-        entryPoint: /public_html/
+        entryPoint: /public_html
         local-dir: ./dist
