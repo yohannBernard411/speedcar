@@ -55,5 +55,5 @@ jobs:
         script: |
           cd domains/mywolf.fr/public_html
           rm -rf *
-          cp -r https://github.com/yohannBernard411/speedcar/dist/speedcar/* ./
+          cp -r $GITHUB_WORKSPACE/dist/speedcar/* ./
 
