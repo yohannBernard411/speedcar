@@ -46,11 +46,9 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          rm public_html
+          cd domains
+          cd mywolf.fr/
+          rm -r public_html
           mkdir public_html
           cd public_html
           touch artefact(build)
-      
- 
-
-
