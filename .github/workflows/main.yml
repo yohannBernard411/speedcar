@@ -36,4 +36,4 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         local-dir: ./dist/
-        server-dir: /domains/mywolf.fr/public_html
+        server-dir: /domains/mywolf.fr/public_html/
