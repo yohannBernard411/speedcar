@@ -50,4 +50,4 @@ jobs:
           cd mywolf.fr/
           rm -r public_html
           mkdir public_html
-          cp artefactbuild public_html
+          cp ${{artefactbuild}} public_html
