@@ -22,10 +22,9 @@ jobs:
       uses: easingthemes/ssh-deploy@v2.1.7
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-        ARGS: "-avz --delete"
-        SOURCE: "dist/"
         REMOTE_HOST: ${{ secrets.IP }}
-        REMOTE_PORT: ${{ secrets.PORT }}
         REMOTE_USER: ${{ secrets.USERNAME }}
+        REMOTE_PORT: ${{ secrets.PORT }}
+        ARGS: -avzr --delete
+        SOURCE: dist/
         TARGET: ${{ secrets.REMOTE_TARGET }}
-        EXCLUDE: "/.git, /.github, /dist/, /node_modules/"
