@@ -49,7 +49,7 @@ jobs:
         rsh: ${{ secrets.SSHPUSHHOSTINGER }}
         path: ./dist
         remote_path: domains/mywolf.fr/public_html
-        remote_host: ${{ secrets.HOST }}
+        remote_host: ${{ secrets.REMOTE_HOST }}
         remote_port: ${{ secrets.PORT }}
-        remote_user: ${{ secrets.USERNAME }}
-        remote_key_pass: ${{ secrets.PASSWORD }}
+        remote_user: ${{ secrets.USER }}
+        remote_key: ${{ secrets.PASSWORD }}
