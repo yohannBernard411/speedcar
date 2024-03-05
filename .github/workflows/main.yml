@@ -37,4 +37,4 @@ jobs:
         port: ${{ secrets.PORT }}
         protocol: ftps
         local-dir: ./dist/speedcar/
-        server-dir: /public_html/
+        server-dir: /domains/mywolf.fr/public_html/
