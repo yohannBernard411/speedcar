@@ -46,9 +46,10 @@ jobs:
       uses: burnett01/rsync-deployments@4.1
       with:
         switches: -avzr --delete
+        rsh: ${{ secrets.SSHPUSHHOSTINGER }}
         path: ./dist
         remote_path: domains/mywolf.fr/public_html
         remote_host: ${{ secrets.HOST }}
+        remote_port: ${{ secrets.PORT }}
         remote_user: ${{ secrets.USERNAME }}
-        remote_key: ${{ secrets.PASSWORD }}
-        remote_port: 65002
+        remote_key_pass: ${{ secrets.PASSWORD }}
