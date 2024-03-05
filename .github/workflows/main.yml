@@ -29,6 +29,7 @@ jobs:
       run: npm run build
 
     - name: SSH Deploy on Hostinger
+      run: rsync -e ssh --delete-after source-path remote-user@target-server:destination-path
       with:
         source-path: ./dist/speedcar/
         target-server: ${{ secrets.IP }}
@@ -38,5 +39,3 @@ jobs:
         private-ssh-key: ${{ secrets.SERVER_SSH_KEY }}
         destination-path: ~/domains/mywolf.fr/public_html/
         ssh-port: ${{ secrets.PORT }}
-      run:  rsync -e ssh --delete-after source-path remote-user@target-server:destination-path
-
