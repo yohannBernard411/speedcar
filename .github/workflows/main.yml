@@ -24,35 +24,33 @@ jobs:
     - name: Build Angular App
       run: npm run build
 
-    - name: upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact(build)
-          path: dist/speedcar
-
     - name: Run Tests
       run: npm run test -- --watch=false --browsers=ChromeHeadless
+      
+    - name: upload build
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifact(build)
+        path: dist
+
+    - name: Download artefact(build)
+      uses: actions/download-artifact@v4
+      with:
+        name: artifact(build)
+
+    - name: Deploying to Hostinger
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          rm public_html
+          mkdir public_html
+          cd public_html
+          touch artefact(build)
+      
  
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artefact(build)
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact(build)
-
-      - name: Deploying to Hostinger
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: |
-            rm public_html
-            mkdir public_html
-            cd public_html
-            touch artefact(build)
 
 
