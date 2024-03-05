@@ -36,7 +36,7 @@ jobs:
         name: artifactbuild
         path: dist
 
-     - name: Download artifact
+    - name: Download artifact
       uses: actions/download-artifact@v4
       with:
         name: artifactbuild
