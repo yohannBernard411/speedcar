@@ -42,13 +42,12 @@ jobs:
         name: artifactbuild
         path: ./dist
 
-    - name: Deploy project with SSH
-      uses: easingthemes/ssh-deploy@v2.1.4
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.PASSWORD }}
-        REMOTE_HOST: ${{ secrets.HOST }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        SOURCE: "./dist"
-        TARGET: "domains/mywolf.fr/public_html"
-
-
+    - name: rsync deployment to remote hostinger
+    uses: burnett01/rsync-deployments@4.1
+    with:
+      switches: -avzr --delete
+      path: ./dist
+      remote_path: domains/mywolf.fr/public_html
+      remote_host: ${{ secrets.HOST }}
+      remote_user: ${{ secrets.USERNAME }}
+      remote_key: ${{ secrets.PASSWORD }}
