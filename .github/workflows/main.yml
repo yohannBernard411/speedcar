@@ -31,12 +31,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: artifactbuild
-        path: dist/
+        path: dist
 
     - name: Download artefactbuild
       uses: actions/download-artifact@v4
       with:
         name: artifactbuild
+        path: build
 
     - name: Deploying to Hostinger
       uses: appleboy/ssh-action@master
@@ -50,4 +51,5 @@ jobs:
           cd mywolf.fr/
           rm -r public_html
           mkdir public_html
-          cp ${{artefactbuild}} public_html
+          cp build/ public_html/
+
