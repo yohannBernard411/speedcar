@@ -29,10 +29,11 @@ jobs:
       run: npm run build
 
     - name: Deploy to Hostinger
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        ftp-server: ${{ secrets.IP }}
-        ftp-username: ${{ secrets.USERNAME }}
-        ftp-password: ${{ secrets.PASSWORD }}
-        entryPoint: /domains/mywolf.fr/public_html
+        server: ${{ secrets.IP }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
         local-dir: ./dist
+        server-dir: /domains/mywolf.fr/public_html
