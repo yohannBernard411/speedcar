@@ -33,8 +33,9 @@ jobs:
       with:
         switches: -avzr --delete
         path: ./dist/speedcar/
-        remote-path: ~/domains/mywolf.fr/public_html/
-        remote-host: ${{ secrets.IP }}
-        remote-user: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        remote-key: ${{ secrets.PUBLIC_KEY }}
+        remote_path: ~/domains/mywolf.fr/public_html/
+        remote_host: ${{ secrets.IP }}
+        remote_port: ${{ secrets.PORT }}
+        remote_user: ${{ secrets.USERNAME }}
+        remote_key: ${{ secrets.PUBLIC_KEY }}
+        remote_key_pass: ${{ secrets.PASSWORD }}
