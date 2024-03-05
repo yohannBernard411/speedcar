@@ -58,6 +58,6 @@ jobs:
         script: |
           cd domains/mywolf.fr/public_html
           rm -rf *  # Supprimer les anciens fichiers
-          cp -r $GITHUB_WORKSPACE/dist/speedcar/./* ./
+          cp -r $GITHUB_WORKSPACE/dist/speedcar/* ./
 
 
