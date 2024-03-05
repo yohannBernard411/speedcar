@@ -37,7 +37,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: artifactbuild
-        path: build
+        path: dist
 
     - name: Deploying to Hostinger
       uses: appleboy/ssh-action@master
