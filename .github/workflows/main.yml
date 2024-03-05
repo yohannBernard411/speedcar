@@ -28,13 +28,12 @@ jobs:
     - name: Build Angular app
       run: npm run build
 
-    - name: Deploy to Hostinger
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    - name: SSH Deploy on Hostinger
+      uses: SamKirkland/web-deploy@v1
       with:
-        server: ${{ secrets.IP }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        protocol: ftps
-        local-dir: ./dist/speedcar/
-        server-dir: /domains/mywolf.fr/public_html/
+        source-path: ./dist/speedcar/
+        target-server: ${{ secrets.IP }}
+        remote-user: ${{ secrets.USERNAME }}
+        private-ssh-key: ${{ secrets.SERVER_SSH_KEY }}
+        destination-path: ~/domains/mywolf.fr/public_html/
+        ssh-port: ${{ secrets.PORT }}
