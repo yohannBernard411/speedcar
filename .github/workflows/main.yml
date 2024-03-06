@@ -33,4 +33,6 @@ jobs:
         FTP_USERNAME: ${{ secrets.NOM_D_UTILISATEUR_FTP }}
         FTP_PASSWORD: ${{ secrets.MDP }}
         FTP_HOST: ${{ secrets.NOM_D_HOTE_FTP }}
+        FTP_REMOTE_DIR: ${{ secrets.DOSSIER_OU_TELECHARGER_LES_FICHIERS }}
+        GITHUB_LOCAL_DIR: ${{ secrets.LOCAL_DIR }}
 
