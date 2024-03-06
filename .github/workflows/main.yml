@@ -28,7 +28,9 @@ jobs:
       run: npm run build
 
     - name: Deploy to Hostinger
-      run: ./deploy.sh
+      run: |
+        chmod +x deploy.sh
+        ./deploy.sh
       env:
         FTP_USERNAME: ${{ secrets.NOM_D_UTILISATEUR_FTP }}
         FTP_PASSWORD: ${{ secrets.MDP }}
