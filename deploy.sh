@@ -5,7 +5,7 @@ HOST=$FTP_HOST
 USER=$FTP_USERNAME
 PASSWORD=$FTP_PASSWORD
 
-# Répertoire de destination sur le serveur FTP
+# Répertoire de destination sur le serveur FTP FTP
 REMOTE_DIR=$FTP_REMOTE_DIR
 
 # Dossier contenant les fichiers à déployer
