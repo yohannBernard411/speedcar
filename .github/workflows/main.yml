@@ -10,32 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run tests
-      run: npm test -- --watch=false --browsers=ChromeHeadless
+      - name: Run tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
 
+      - name: Build Angular app
+        run: ng build
 
-    - name: Build Angular app
-      run: npm run build
+      - name: Deploy to Hostinger
+        run: ./deploy.sh
+        env:
+          FTP_USERNAME: ${{ secrets.NOM_D_UTILISATEUR_FTP }}
+          FTP_PASSWORD: ${{ secrets.MDP }}
+          FTP_HOST: ${{ NOM_D_HOTE_FTP }}
 
-    - name: rsync Deploy on Hostinger
-      uses: burnett01/rsync-deployments@6.0.0
-      with:
-        switches: -avzr --delete
-        path: ./dist/speedcar/
-        remote_path: ~/domains/mywolf.fr/public_html/
-        remote_host: ${{ secrets.IP }}
-        remote_port: ${{ secrets.PORT }}
-        remote_user: ${{ secrets.USERNAME }}
-        remote_key: ${{ secrets.PUBLIC_KEY }}
-        remote_key_pass: ${{ secrets.PASSWORD }}
